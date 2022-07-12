@@ -64,7 +64,7 @@
 									id="exampleCheck1"> <label class="form-check-label"
 									for="exampleCheck1">Agree Terms & Conditions</label>
 							</div>
-							<button type="submit" class="btn primary-background text-white">Submit</button>
+							<button type="submit" class="btn primary-background text-white" style="margin-top: 10px">Submit</button>
 						</form>
 					</div>
 				</div>
