@@ -10,17 +10,17 @@ public class User {
 	private String gender;
 	private String about;
 	private Timestamp dateTime;
-	
-	public User() {}
 
-	public User(String name, String email, String password, String gender, String about, Timestamp dateTime) {
+	public User() {
+	}
+
+	public User(String name, String email, String password, String gender, String about) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.gender = gender;
 		this.about = about;
-		this.dateTime = dateTime;
 	}
 
 	public User(int id, String name, String email, String password, String gender, String about, Timestamp dateTime) {
@@ -95,5 +95,5 @@ public class User {
 		return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
 				+ gender + ", about=" + about + ", dateTime=" + dateTime + "]\n";
 	}
-	
+
 }

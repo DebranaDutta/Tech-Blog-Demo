@@ -21,7 +21,7 @@
 </head>
 <body>
 	<!-- NAVBAR -->
-		<%@include file="Normal_Navbar.jsp" %>	
+	<%@include file="Normal_Navbar.jsp"%>
 	<!-- REGISTRATION FORM -->
 	<main style="padding: 10px">
 		<div class="container">
@@ -34,16 +34,17 @@
 							</h4>
 						</div>
 						<div class="card-body"></div>
-						<form style="padding: 5px">
+						<form id="Registration_Form" action="RegisterServlet" method="post" style="padding: 5px">
 							<div class="form-group">
-								<label for="user_name">User Name</label> <input type="text"
-									class="form-control" id="user_name"
+								<label for="user_name">User Name</label> <input name="user_name"
+									type="text" class="form-control" id="user_name"
 									aria-describedby="emailHelp" placeholder="Enter usern name">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Email address</label> <input
-									type="email" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" placeholder="Enter email">
+									name="user_email" type="email" class="form-control"
+									id="exampleInputEmail1" aria-describedby="emailHelp"
+									placeholder="Enter email">
 							</div>
 							<div class="form-group">
 								<label for="gender">Select Gender</label><br> <input
@@ -52,19 +53,21 @@
 									id="gender-female" style="margin-right: 2px;" name="gender">Female
 							</div>
 							<div class="form-group">
-								<textarea name="about" class="form-control" rows="6" placeholder="Something about yourself"></textarea>
+								<textarea name="user_about" class="form-control" rows="6"
+									placeholder="Something about yourself"></textarea>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Password</label> <input
-									type="password" class="form-control" id="exampleInputPassword1"
-									placeholder="Password">
+									name="user_password" type="password" class="form-control"
+									id="exampleInputPassword1" placeholder="Password">
 							</div>
 							<div class="form-check">
-								<input type="checkbox" class="form-check-input"
+								<input name="user_check" type="checkbox" class="form-check-input"
 									id="exampleCheck1"> <label class="form-check-label"
 									for="exampleCheck1">Agree Terms & Conditions</label>
 							</div>
-							<button type="submit" class="btn primary-background text-white" style="margin-top: 10px">Submit</button>
+							<button type="submit" class="btn primary-background text-white"
+								style="margin-top: 10px">Submit</button>
 						</form>
 					</div>
 				</div>
@@ -86,5 +89,28 @@
 	<script src="js/myjs.js" type="text/javascript"></script>
 	<script src="https://kit.fontawesome.com/a2eb5bebaa.js"
 		crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			console.log("loaded.....");
+			$('#Registration_Form').on('submit',function(event){
+				event.preventDefault();
+				let form=new FormData(this);
+				console.log(form);
+				$.ajax({
+					url:"RegisterServlet",
+					type:'POST'
+					data: 'form',
+					success: function(data, textStatus, jqXHR){
+						console.log(data)
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						console.log(jqXHR)
+					},
+					processData: false,
+					contentType: false
+				});
+			});
+		});
+	</script>
 </body>
 </html>
