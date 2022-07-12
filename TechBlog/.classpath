@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-16">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/jsp-api-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/mysql-connector-java-8.0.28.jar"/>
+	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/servlet-api-2.5.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>

@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+
+.primary-background {
+	background: #29b6f6;
+}
+i{
+	padding-right: 5px;
+}
+.fa-external-link{
+	padding-right: 5px;
+}
+.fa-sign-in{
+	padding-right: 5px;
+}
