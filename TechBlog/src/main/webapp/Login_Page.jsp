@@ -1,4 +1,6 @@
+<%@page import="com.TechBlog.Entities.Message"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,23 @@
 								<span class="fa fa-sign-in"></span>Login
 							</h4>
 						</div>
+
+						<%
+						Message message = (Message) session.getAttribute("Message");
+						if (message != null) {
+						%>
+						<div class="alert <%=message.getCssClass()%>" role="alert" ><%=message.getContent()%></div>
+						<%
+							session.removeAttribute("Message");
+						}
+						%>
+
 						<div class="card-body">
 							<form action="LoginServlet" method="post">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Email address</label>
-									<input name="email" required="required" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+									<input name="email" required="required" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+										placeholder="Enter email">
 									<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 								<div class="form-group">

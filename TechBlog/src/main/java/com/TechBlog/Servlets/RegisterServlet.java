@@ -22,13 +22,11 @@ public class RegisterServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String check = request.getParameter("user_check");
 
@@ -51,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 			// Inserting data using user dao insert method
 			if (userDao.saveUSer(user)) {
 				out.println("User added");
-			} else {
+			}else {
 				out.println("Operation Failed");
 			}
 
