@@ -15,7 +15,6 @@ public class ConnectionProvider {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				con = DriverManager.getConnection(url, uname, pwd);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

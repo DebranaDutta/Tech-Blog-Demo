@@ -11,7 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/jsp-api-2.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/mysql-connector-java-8.0.28.jar"/>
-	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/debra/Downloads/JARS/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/debra/Downloads/javax.servlet-api-4.0.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

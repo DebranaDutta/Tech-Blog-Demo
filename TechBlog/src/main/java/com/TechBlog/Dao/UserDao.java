@@ -49,11 +49,32 @@ public class UserDao {
 				Timestamp timestamp=resultSet.getTimestamp("rdate");  
 				String profile=resultSet.getString("profile");
 				
-				user=new User(id, name, email, password, gender, about, timestamp);
+				user=new User(id, name, email, password, gender, about, timestamp, profile);
 			}			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public boolean UpdateUser(User user) {
+		boolean status=false;
+		try {
+			String query="UPDATE user SET name=?,password=?,email=?,gender=?,about=?,profile=? WHERE id=?";
+			PreparedStatement preparedStatement=this.con.prepareStatement(query);
+			preparedStatement.setString(1,user.getName());
+			preparedStatement.setString(2,user.getPassword());
+			preparedStatement.setString(3,user.getEmail());
+			preparedStatement.setString(4, user.getGender());
+			preparedStatement.setString(5, user.getAbout());
+			preparedStatement.setString(6,user.getProfile());
+			preparedStatement.setInt(7, user.getId());
+			
+			preparedStatement.executeUpdate();
+			status=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 }
