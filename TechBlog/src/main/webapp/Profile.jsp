@@ -75,6 +75,40 @@ if (user == null) {
 	session.removeAttribute("Message");
 	}
 	%>
+	<!-- MAIN BODY OF THE PAGE -->
+	<main>
+		<div class="container">
+			<div class="row mt-3">
+			<!-- first col -->
+				<div class="col-md-3">
+					<div class="list-group text-center">
+						<a href="#" onClick="getPost(0)" class="list-group-item list-group-item-action"> All POSTS </a> 
+						<%
+							PostDao postDao1=new PostDao(ConnectionProvider.GetConnection());
+							ArrayList<Categories> list1=new ArrayList();
+							list1=postDao1.getCategories();
+							for(Categories categories:list1){
+						%>
+						<a href="#"  onclick="getPost(<%=categories.getCid()%>)" class="list-group-item list-group-item-action"><%=categories.getName()%></a> 
+						<%}
+						%>
+					</div>
+				</div>
+				<!-- Second col -->	
+				<div class="col-md-9">
+					<div class="container text-center" id="loader">
+						<i class="fa fa-refresh fa-3x fa-spin "></i>
+						<h3 class="mt-2">Loading...</h3>
+					</div>
+					<div class="container-fluid" id="post-container">
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</main>	
+	<!-- END OF MAIN BODY OF THE PAGE -->
 	<!-- PROFILE-MODAL -->
 
 	<!-- Button trigger modal -->
@@ -207,7 +241,7 @@ if (user == null) {
 								ArrayList<Categories> list = postDao.getCategories();
 								for (Categories c : list) {
 								%>
-								<option value="<%=c.getCid()%>"><%=c.getName()%></option>
+								<option><%=c.getName()%></option>
 								<%
 								}
 								%>
@@ -249,6 +283,7 @@ if (user == null) {
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="js/myjs.js" type="text/javascript"></script>
 	<script src="https://kit.fontawesome.com/a2eb5bebaa.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#profile_edit").hide();
@@ -292,10 +327,14 @@ if (user == null) {
 					type : "POST",
 					data : form,
 					success : function(data, textStatus, jqXHR) {
-						
+						if(data.trim()==='done'){
+						swal("Good job!", "saved successfully!", "success");
+						}else{
+							swal("Error!", "Something went wrong try again!", "error");
+						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
-
+						swal("Error!", "Something went wrong try again!", "error");
 					},
 					processData : false,
 					contentType : false
@@ -303,6 +342,45 @@ if (user == null) {
 			});
 		});
 	</script>
-
+	
+	<!-- Loading post using AJAX -->
+	<!-- <script>
+		function getPost(catId){
+		
+			$.ajax({
+				url: "LoadPost.jsp",
+				data:{cid:catId},
+				success : function(data, textStatus, jqXHR){
+					console.log(data);
+					$("#loader").hide();
+					$("#post-container").show();
+					$("#post-container").html(data);
+				}
+			});
+		}
+		$(document).ready(function(e){
+			$("#loader").show();
+			$("#post-container").hide();
+			getPost()
+		});
+	</script> -->
+	<script>
+		function getPost(catId) {
+			$("#loader").show();
+			$("#post-container").hide();
+			$.ajax({
+				url:"Load_Post.jsp",
+				data:{cid:catId},
+				success : function(data, textStatus, jqXHR){
+					$("#loader").hide();
+					$("#post-container").show();
+					$("#post-container").html(data);
+				}
+			});
+		}
+		$(document).ready(function (e) {
+			getPost(0);
+		});
+	</script>
 </body>
 </html>

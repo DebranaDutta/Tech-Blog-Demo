@@ -46,15 +46,15 @@ public class AddPostServlet extends HttpServlet {
 		int userId=user.getId();
 
 		Posts posts = new Posts(userId, ptitle, pcontent, pcode, user_image, null, cid, userId);
-		out.println(posts);
+		//out.println(posts);
 		
 		PostDao postDao=new PostDao(ConnectionProvider.GetConnection());
 		if(postDao.savePost(posts)) {
 			String path=request.getRealPath("/")+"img"+File.separator+user_image;
 			Helper.saveFile(part.getInputStream(), path);
-			out.println("Post Added");
+			out.println("done");
 		}else {
-			out.print("operation failed");
+			out.print("error");
 		}
 
 	}
