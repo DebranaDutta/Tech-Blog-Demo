@@ -25,7 +25,11 @@
 			<div class="card-body">
 				<b><%=post.getpTitle()%></b>
 				<p><%=post.getpContent()%></p>
-				<pre><%=post.getpCode()%></pre>
+			</div>
+			<div class="card-footer">
+				<a href="#!" class="mr-3"><i class="fa fa-thumbs-up"><span class="ml-2">10</span></i></a>
+				<a href="#!" class="mr-5"><i class="fas fa-comment"><span class="ml-2">20</span></i></a>
+				<a href="show_blog_page.jsp?post_id=<%=post.getPid()%>" class="ml-5">Read More...</a>
 			</div>
 		</div>
 	</div>

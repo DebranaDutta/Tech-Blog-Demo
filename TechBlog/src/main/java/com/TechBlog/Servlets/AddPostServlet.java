@@ -35,6 +35,7 @@ public class AddPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		int cid = Integer.parseInt(request.getParameter("cid"));
+		System.out.println(cid);
 		String ptitle = request.getParameter("ptitle");
 		String pcontent = request.getParameter("pcontent");
 		String pcode = request.getParameter("pcode");
@@ -50,7 +51,7 @@ public class AddPostServlet extends HttpServlet {
 		
 		PostDao postDao=new PostDao(ConnectionProvider.GetConnection());
 		if(postDao.savePost(posts)) {
-			String path=request.getRealPath("/")+"img"+File.separator+user_image;
+			String path=request.getRealPath("/")+"Post_Pic"+File.separator+user_image;
 			Helper.saveFile(part.getInputStream(), path);
 			out.println("done");
 		}else {

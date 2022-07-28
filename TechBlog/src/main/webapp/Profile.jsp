@@ -82,14 +82,14 @@ if (user == null) {
 			<!-- first col -->
 				<div class="col-md-3">
 					<div class="list-group text-center">
-						<a href="#" onClick="getPost(0)" class="list-group-item list-group-item-action"> All POSTS </a> 
+						<a href="#" onClick="getPost(0,this)" class="list-group-item list-group-item-action c-link active"> All POSTS </a> 
 						<%
 							PostDao postDao1=new PostDao(ConnectionProvider.GetConnection());
 							ArrayList<Categories> list1=new ArrayList();
 							list1=postDao1.getCategories();
 							for(Categories categories:list1){
 						%>
-						<a href="#"  onclick="getPost(<%=categories.getCid()%>)" class="list-group-item list-group-item-action"><%=categories.getName()%></a> 
+						<a href="#"  onclick="getPost(<%=categories.getCid()%>,this)" class="list-group-item list-group-item-action c-link"><%=categories.getName()%></a> 
 						<%}
 						%>
 					</div>
@@ -319,9 +319,9 @@ if (user == null) {
 		$(document).ready(function() {
 			$("#add-post-form").on("submit", function(event) {
 				event.preventDefault();
-				console.log("Ypu have clicked on Submit");
+				console.log("You have clicked on Submit");
 				let form = new FormData(this);
-
+				
 				$.ajax({
 					url : "AddPostServlet",
 					type : "POST",
@@ -334,7 +334,7 @@ if (user == null) {
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
-						swal("Error!", "Something went wrong try again!", "error");
+						swal("Error!", "Something went wrong try again!!!", "error");
 					},
 					processData : false,
 					contentType : false
@@ -344,30 +344,11 @@ if (user == null) {
 	</script>
 	
 	<!-- Loading post using AJAX -->
-	<!-- <script>
-		function getPost(catId){
-		
-			$.ajax({
-				url: "LoadPost.jsp",
-				data:{cid:catId},
-				success : function(data, textStatus, jqXHR){
-					console.log(data);
-					$("#loader").hide();
-					$("#post-container").show();
-					$("#post-container").html(data);
-				}
-			});
-		}
-		$(document).ready(function(e){
-			$("#loader").show();
-			$("#post-container").hide();
-			getPost()
-		});
-	</script> -->
 	<script>
-		function getPost(catId) {
+		function getPost(catId,temp) {
 			$("#loader").show();
 			$("#post-container").hide();
+			$(".c-link").removeClass("active");
 			$.ajax({
 				url:"Load_Post.jsp",
 				data:{cid:catId},
@@ -375,11 +356,13 @@ if (user == null) {
 					$("#loader").hide();
 					$("#post-container").show();
 					$("#post-container").html(data);
+					$(temp).addClass("active");
 				}
 			});
 		}
 		$(document).ready(function (e) {
-			getPost(0);
+			let allPostRef=$(".c-link")[0];
+			getPost(0,allPostRef);
 		});
 	</script>
 </body>
